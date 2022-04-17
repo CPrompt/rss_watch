@@ -22,7 +22,6 @@ RaceFeed = feedparser.parse("https://torrentgalaxy.to/rss?user=48067")
 entry = RaceFeed.entries[0]
 key_word = ["2022", "Race", "SD"] 
 time_now = datetime.now().strftime("%d %b %Y")
-#time_now = "10 Apr 2022"
 
 print("Today is: " + time_now)
 print("\n")
@@ -56,6 +55,10 @@ for entry in RaceFeed.entries:
                     update_json.updateJsonFile("motogp_update","No")
                     update_json.updateJsonFile("last_run",time_now)
 
+            else:
+                print("No new MotoGP race yet")
+                update_json.updateJsonFile("last_run",time_now)
+
         if ("Formula.1" in entry.title):
             if(time_now in entry.published):
 
@@ -69,3 +72,8 @@ for entry in RaceFeed.entries:
                 else:
                     update_json.updateJsonFile("formula1_update","No")
                     update_json.updateJsonFile("last_run",time_now)
+
+            else:
+                print("No new F1 race yet")
+                update_json.updateJsonFile("last_run",time_now)
+
